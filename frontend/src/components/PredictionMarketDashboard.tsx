@@ -3,8 +3,9 @@
 import { useReadContract } from "thirdweb/react";
 import { p3MarketContract } from "@/app/constants/contract";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import  Navbar  from "./Navbar";
-import { MarketCardSkeleton } from './skletonCard';
+import Navbar from "./Navbar";
+import { MarketCardSkeleton } from "./skletonCard";
+import { MarketCard } from "./marketCard";
 
 export default function PredictionMarketDashboard() {
   const { data: marketCount, isLoading: isLoadingMarketCount } =
@@ -15,7 +16,7 @@ export default function PredictionMarketDashboard() {
     });
 
   const skeletonCards = Array.from({ length: 6 }, (_, i) => (
-      <MarketCardSkeleton key={`skeleton-${i}`} />
+    <MarketCardSkeleton key={`skeleton-${i}`} />
   ));
 
   return (
@@ -47,7 +48,7 @@ export default function PredictionMarketDashboard() {
               <TabsContent value="active">
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                   {Array.from({ length: Number(marketCount) }, (_, index) => (
-                    <></>
+                    <MarketCard key={index} index={index} filter="active" />
                   ))}
                 </div>
               </TabsContent>
@@ -55,7 +56,7 @@ export default function PredictionMarketDashboard() {
               <TabsContent value="pending">
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                   {Array.from({ length: Number(marketCount) }, (_, index) => (
-                    <></>
+                    <MarketCard key={index} index={index} filter="pending" />
                   ))}
                 </div>
               </TabsContent>
@@ -63,7 +64,7 @@ export default function PredictionMarketDashboard() {
               <TabsContent value="resolved">
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                   {Array.from({ length: Number(marketCount) }, (_, index) => (
-                    <></>
+                    <MarketCard key={index} index={index} filter="resolved" />
                   ))}
                 </div>
               </TabsContent>
