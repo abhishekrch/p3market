@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { MarketTime } from "./marketTime";
+import { MarketProgress } from "./marketProgress";
 
 interface MarketCardProps {
   index: number;
@@ -95,10 +97,18 @@ export function MarketCard({ index, filter }: MarketCardProps) {
       ) : (
         <>
           <CardHeader>
+            <MarketTime endTime={market?.endTime!} />
             <CardTitle>{market?.question}</CardTitle>
           </CardHeader>
           <CardContent>
-            {market && <></>}
+            {market && (
+              <MarketProgress
+                optionA={market.optionA}
+                optionB={market.optionB}
+                totalOptionAShares={market.totalOptionAShares}
+                totalOptionBShares={market.totalOptionBShares}
+              />
+            )}
             {new Date(Number(market?.endTime) * 1000) < new Date() ? (
               market?.resolved ? (
                 <></>
