@@ -9,6 +9,7 @@ import {
 } from "./ui/card";
 import { MarketTime } from "./marketTime";
 import { MarketProgress } from "./marketProgress";
+import { MarketBuyInterface } from "./marketBuyInterface";
 
 interface MarketCardProps {
   index: number;
@@ -116,7 +117,7 @@ export function MarketCard({ index, filter }: MarketCardProps) {
                 <></>
               )
             ) : (
-              <></>
+              <MarketBuyInterface marketId={index} market={market!} />
             )}
           </CardContent>
           <CardFooter>{market && sharesBalance && <></>}</CardFooter>
