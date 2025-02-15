@@ -10,6 +10,7 @@ import {
 import { MarketTime } from "./marketTime";
 import { MarketProgress } from "./marketProgress";
 import { MarketBuyInterface } from "./marketBuyInterface";
+import { MarketSharesDisplay } from "./marketShares";
 
 interface MarketCardProps {
   index: number;
@@ -120,7 +121,14 @@ export function MarketCard({ index, filter }: MarketCardProps) {
               <MarketBuyInterface marketId={index} market={market!} />
             )}
           </CardContent>
-          <CardFooter>{market && sharesBalance && <></>}</CardFooter>
+          <CardFooter>
+            {market && sharesBalance && (
+              <MarketSharesDisplay
+                market={market}
+                sharesBalance={sharesBalance}
+              />
+            )}
+          </CardFooter>
         </>
       )}
     </Card>
